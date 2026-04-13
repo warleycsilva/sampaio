@@ -1,0 +1,136 @@
+﻿@using System.Globalization
+@using Sampaio.Shared.Config
+@using Sampaio.Shared.Extensions
+@model Sampaio.Domain.EmailsViewModels.PaymentVoucherVm
+@inject AppConfig AppConfig
+@{
+    Layout = "_Layout";
+    var url = $"{AppConfig.AppUrl}";
+    ViewBag.Title = "Comprovante de pagamento";
+}
+
+<div>
+    <p>
+        Olá, @Model.ClientName
+    </p>
+    <p>
+        Seu recibo de pagamento com a Sampaio:
+    </p>
+</div>
+<div style="width: 100%">
+    <table style="width: 80%">
+        <tbody style="width: 100%">
+        <tr>
+            <td align="left" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white">Locador: </label>
+            </td>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> </label>
+            </td>
+            <td align="right" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-top:5px;text-align:right;direction:ltr">
+                <label style="background-color: white">@Model.EstablishmentName</label>
+            </td>
+        </tr>
+    
+        <tr>
+            <td align="left" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> Meio de pagamento: </label>
+            </td>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> </label>
+            </td>
+            <td align="right" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-top:5px;text-align:right;direction:ltr">
+                <label style="background-color: white">@Model.PaymentType </label>
+            </td>
+        </tr>
+       
+        <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+      
+        <tr>
+            <td align="left" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> Data/Hora do pagamento: </label>
+            </td>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> </label>
+            </td>
+            <td align="right" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-top:5px;text-align:right;direction:ltr">
+                <label style="background-color: white"> @Model.PaymentDatetime.ToBrazilianTimezone().ToString("dd/MM/yyyy HH:mm")</label>
+            </td>
+        </tr>
+        <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+        <tr style="margin-top:10px;">
+            <td>
+                <hr/>
+            </td>
+            <td >
+               <hr/>
+            </td>
+            <td>
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white; font-weight: 400;"> Movimento(s) pago(s): </label>
+            </td>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> </label>
+            </td>
+            <td align="right" style="font-size:16px;line-height:28px;padding-bottom:5px;padding-top:5px;text-align:right;direction:ltr">
+                <label style="background-color: white">  </label>
+            </td>
+        </tr>
+        
+        @foreach(var item in Model.Movements)
+        {
+            <tr>
+                <td style="font-size:16px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                    @* Tipo de movimento *@
+                    <label style="background-color: white"> @item[0] </label>
+                </td>
+                <td style="font-size:16px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                    @* Data do movimento *@
+                    <label style="background-color: white"> @Convert.ToDateTime(@item[2]).ToString("d", new CultureInfo("pt-BR")) </label>
+                </td>
+                <td style="font-size:16px;line-height:28px;padding-bottom:5px;padding-top:5px;text-align:right;direction:ltr">
+                    @* Valor do movimento *@
+                    <label style="background-color: white"> R$ @item[1] </label>
+                </td>
+            </tr>
+        }
+        <!----------------------------------------------------------------------------------------------------------------------------------------------------->
+        <tr>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> </label>
+            </td>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> </label>
+            </td>
+            <td  style="font-size:20px;line-height:28px;padding-bottom:5px;padding-top:5px;text-align:right;direction:ltr">
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white">Total pago:</label>
+            </td>
+            <td style="font-size:20px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:left">
+                <label style="background-color: white"> </label>
+            </td>
+            <td  style="font-size:20px;line-height:28px;padding-bottom:5px;padding-top:5px;text-align:right;direction:ltr">
+                <label style="background-color: white">R$ @Model.PaymentValue</label>
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
+</div>
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+              
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+    
+<div style="margin-top:50px;">
+    <label style="background-color: white; font-size:10px;line-height:28px;padding-bottom:5px;padding-right:12px;padding-top:5px;direction:ltr;text-align:center">
+        Identificação da Transação: @Model.Id
+    </label>
+</div>

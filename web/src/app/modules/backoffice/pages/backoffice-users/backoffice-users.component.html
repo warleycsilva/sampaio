@@ -1,0 +1,254 @@
+<button class="ui sampaio button" (click)="openCreateUserModal()">
+  <i class="fal fa-icon" [ngClass]="'fa-plus'"></i> Adicionar
+</button>
+
+<div ch-grid-column>
+  <div ch-grid-column tablet="16" computer="16" class="m-t-30">
+    <grid-loading [grid]="grid"></grid-loading>
+
+    <table
+      class="ui very basic sortable table ch-table"
+      *ngIf="grid.itens.length > 0"
+    >
+      <thead>
+        <tr>
+          <th class="center aligned checkbox no-sort"></th>
+          <th th-sort>Nome</th>
+          <th th-sort>E-mail</th>
+          <th th-sort>Data de criação</th>
+          <th th-sort class="center aligned">Bloqueado?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of grid.itens; let i = index">
+          <td class="checkbox">
+            <div ch-dp-btn color="tiny" header="Opções">
+              <div class="item" [routerLink]="['details', item.id]">
+                <span class="ui small sampaio header small">
+                  <i class="fa fa-search"></i>
+                </span>
+                Detalhes
+              </div>
+              <div
+                class="item"
+                (click)="
+                  item?.user?.blocked
+                    ? unBlockBackofficeUser(item.id)
+                    : openModalFormBlock(item.id, item?.user?.firstName)
+                "
+              >
+                <span
+                  *ngIf="!item.user?.blocked"
+                  class="ui small red header small"
+                >
+                  <i class="fa fa-ban"></i>
+                </span>
+                <span
+                  *ngIf="item?.user?.blocked"
+                  class="ui small green header small"
+                >
+                  <i class="fa fa-check"></i>
+                </span>
+                {{
+                  item?.user?.blocked
+                    ? "Desbloquear usuário"
+                    : "Bloquear usuário"
+                }}
+              </div>
+              <div
+                class="item"
+                *ngIf="item?.user?.blocked"
+                (click)="
+                  openModalBlockedReason(
+                    item?.user?.firstName,
+                    item?.user?.blockedReason
+                  )
+                "
+              >
+                <span class="ui small yellow header small">
+                  <i class="fa fa-exclamation-triangle"></i>
+                </span>
+                Motivo do bloqueio
+              </div>
+              <div
+                class="item"
+                (click)="recoveryPassordUser(item?.user?.email)"
+              >
+                <span class="ui small yellow header small">
+                  <i class="fa fa-unlock-alt"></i>
+                </span>
+                Recuperar senha
+              </div>
+            </div>
+          </td>
+          <td>
+            {{ item.user.fullName }}
+          </td>
+          <td>
+            {{ item.user.email }}
+          </td>
+          <td>
+            {{ item.user.createdAt | date: "shortDate" }}
+          </td>
+
+          <td *ngIf="item?.user?.blocked" class="center aligned">
+            <i class="large green checkmark icon"></i>
+          </td>
+          <td *ngIf="!item?.user?.blocked" class="center aligned">
+            <i class="large red close icon"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div
+  grid-pagination
+  [grid]="grid"
+  [current-page]="grid?.pageIndex"
+  [total-pages]="grid?.totalPages"
+></div>
+
+<ch-modal #modalNewUser>
+  <div ch-grid-row>
+    <div ch-grid-column tablet="16" computer="16">
+      <form class="ui form" [formGroup]="form">
+        <div
+          class="field required"
+          [ngClass]="{ error: form.controls.email.invalid && submitted }"
+        >
+          <input
+            type="text"
+            required
+            formControlName="email"
+            [placeholder]="'E-mail'"
+          />
+          <ch-pointing-label
+            *ngIf="submitted && form.controls.email?.errors?.required"
+          >
+            E-mail é obrigatório
+          </ch-pointing-label>
+          <ch-pointing-label
+            class="error"
+            *ngIf="submitted && form.controls.email?.errors?.email"
+          >
+            E-mail é invalido
+          </ch-pointing-label>
+        </div>
+
+        <div
+          class="field required"
+          [ngClass]="{ error: form.controls.password.invalid && submitted }"
+        >
+          <input
+            type="password"
+            required
+            formControlName="password"
+            [placeholder]="'Senha'"
+          />
+          <ch-pointing-label
+            *ngIf="submitted && form.controls.password?.errors?.required"
+          >
+            Senha é obrigatória
+          </ch-pointing-label>
+        </div>
+
+        <div
+          class="field required"
+          [ngClass]="{
+            error: form.controls.passwordConfirmation.invalid && submitted
+          }"
+        >
+          <input
+            type="password"
+            required
+            formControlName="passwordConfirmation"
+            [placeholder]="'Confirmar Senha'"
+          />
+          <ch-pointing-label
+            *ngIf="
+              submitted && form.controls.passwordConfirmation?.errors?.required
+            "
+          >
+            Confirmação de senha é obrigatório
+          </ch-pointing-label>
+        </div>
+
+        <div
+          class="field required"
+          [ngClass]="{ error: form.controls.firstName.invalid && submitted }"
+        >
+          <input
+            type="text"
+            required
+            formControlName="firstName"
+            [placeholder]="'Nome'"
+          />
+          <ch-pointing-label
+            *ngIf="submitted && form.controls.firstName?.errors?.required"
+          >
+            Nome é obrigatório
+          </ch-pointing-label>
+        </div>
+
+        <div class="field required">
+          <input
+            type="text"
+            required
+            formControlName="lastName"
+            [placeholder]="'Sobrenome'"
+          />
+        </div>
+
+        <div class="ui divider hidden"></div>
+        <button class="ui sampaio button" (click)="send()">
+          Salvar <i class="fal fa-icon" [ngClass]="'fa-save'"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</ch-modal>
+
+<ch-modal #modalBlockUser>
+  <div ch-grid-row>
+    <div ch-grid-column tablet="16" computer="16">
+      <form class="ui form" [formGroup]="formBlock">
+        <div
+          class="field required"
+          [ngClass]="{
+            error: formBlock.controls.blockReason?.invalid && submittedBlock
+          }"
+        >
+          <input
+            type="text"
+            required
+            formControlName="blockReason"
+            [placeholder]="'Motivo'"
+          />
+          <ch-pointing-label
+            *ngIf="
+              submittedBlock && formBlock.controls.blockReason?.errors?.required
+            "
+          >
+            O Motivo é obrigatório
+          </ch-pointing-label>
+        </div>
+        <button class="ui sampaio button" (click)="blockBackofficeUser()">
+          Enviar <i class="fal fa-icon" [ngClass]="'fa-save'"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</ch-modal>
+
+<ch-modal #modalBlockedReason>
+  <form action="" class="ui form">
+    <div class="field">
+      <div class="field">
+        <div class="textarea">
+          {{ blockedReasonSelected }}
+        </div>
+      </div>
+    </div>
+  </form>
+</ch-modal>

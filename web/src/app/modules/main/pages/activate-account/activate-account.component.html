@@ -1,0 +1,39 @@
+<div class="ch-login">
+  <div class="ch-login-container">
+    <div class="ch-login-header">
+      <img class="logo" src="assets/images/logo-blue.png">
+    </div>
+    <div class="ch-login-content">
+
+      <div *ngIf="result.error">
+        <div class="ui error message">
+          <div class="header">
+            Atenção!
+          </div>
+          <p>{{result.error}}</p>
+        </div>
+      </div>
+
+      <div class="ch-login-form">
+
+        <div *ngIf="result.success">
+          <div class="ui green message">
+            <i class="close icon" [routerLink]="['/login']"></i>
+            <div class="header">
+             {{result.message}}
+            </div>
+
+          </div>
+
+          <div class="m-t-30" *ngIf='result.userProfile=="Renter"'>
+            <button class="ui sampaio fluid button" [routerLink]="['/login']">
+              Login
+              <i class="fas fa-sign-in fa-icon"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

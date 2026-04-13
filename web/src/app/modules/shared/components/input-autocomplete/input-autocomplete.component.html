@@ -1,0 +1,31 @@
+<!-- <form class="wrapper-dropdown">
+    <div class="container">
+      <div #dropdown class="dropdown">
+        <input
+          [disabled]="isDisabled"
+          class="native-input"
+          [(ngModel)]="search"
+          [ngModelOptions]="{ standalone: true }"
+          #input
+          [placeholder]="isDisabled ? '' : 'Digite sua busca aqui'"
+          (ngModelChange)="isOpen = true"
+          (keyup)="onKeyUp($event)"
+        />
+      </div>
+      <ul #list class="options" ngIf="isOpen">
+        <spanngIf="!isLoading">
+          <li
+            class="option"
+            ngFor="let option of options; let i = index"
+            [tabindex]="i - 2"
+            (click)="onSelect(option)"
+            (keyup)="onKeyUp($event, option)"
+          >
+            {{ option.value }}
+          </li>
+        </span>
+        <div class="option-disabled"ngIf="options.length == 0 && !isLoading && search.length > 3 && hasSearchedOnce">Sem resultados</div>
+        <div class="option-disabled" *ngIf="isLoading">Carregando...</div>
+      </ul>
+    </div>
+  </form> -->

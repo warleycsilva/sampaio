@@ -1,0 +1,163 @@
+:root [data-theme="sampaio"] {
+  --main-color: #2D3591;
+}
+
+body {
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+[data-theme="sampaio"] .ch-nav {
+  /* background-color: #115a63; */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#2D3591+0,115a63+100 */
+  background: #2D3591;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #000 0%, #000 80%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #000 0%, #000 80%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #000 0%, #000 80%);
+}
+
+@media only screen and (max-width: 768px) {
+  [data-theme="sampaio"] .ch-nav {
+    background: #2D3591;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #000 0%, #000 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #000 0%, #000 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #000 0%, #000 100%);
+  }
+}
+
+[data-theme="sampaio"] .ch-expand-button {
+  background-color: #000;
+}
+
+[data-theme="sampaio"] .ch-expand-button>button {
+  color: #FFF;
+}[data-theme="sampaio"] .ch-expand-button>button>.icon path {
+  fill: #FFF;
+}
+
+[data-theme="sampaio"] .ch-account-content-menu>.ch-dropdown-menu>.ch-dropdown-menu-item.active>.ch-dropdown-menu-item-label:before, [data-theme="sampaio"] .ch-menu-item.active a:before {
+  border-right-color: #fff;
+}
+
+[data-theme="sampaio"] .ch-account-content-menu>.ch-dropdown-menu>.ch-dropdown-menu-item.active>.ch-dropdown-menu-item-label>.fa-icon:first-child, [data-theme="sampaio"] .ch-menu-item.active a>.fa-icon:first-child {
+  color: #fff;
+}
+
+[data-theme="sampaio"] .ch-menu-item.ch-dropdown.open>.ch-dropdown-button>.fa-icon:first-child {
+  color: #fff;
+}
+
+[data-theme="sampaio"] .ch-pagination.ui.pagination.menu .item.active {
+  border-bottom-color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+  [data-theme="sampaio"] .ch-nav:not(.active) .ch-menu-item.active a:before {
+    border-bottom-color: #fff;
+  }
+}
+
+[data-theme="sampaio"] .ch-loader-progress:before {
+  background-color: #fff;
+}
+
+[data-theme="sampaio"] .ch-menu-item.active>a {
+  color: #fff;
+}
+
+/* [data-theme="sampaio"] .ch-nav{
+  background-color: #252c38;
+} */
+
+/* [data-theme="sampaio"] .ch-header{
+  background-color: #C0C0C0;
+} */
+
+[data-theme="sampaio"] .ui.sampaio.button, .ui.sampaio.buttons {
+  background-color: #2D3591;
+  border-width: 1px;
+  border-color: black;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+[data-theme="sampaio"] .ui.sampaio.button:hover, .ui.sampaio.buttons:hover {
+  background-color: #2D3591;
+  color: #FFF200;
+  border-width: 1px;
+  border-color: black;
+  text-shadow: none;
+  background-image: none;
+}
+
+[data-theme="sampaio"] .ui.basic.sampaio.button, .ui.basic.sampaio.buttons {
+  box-shadow: 0 0 0 1px #2D3591 inset!important;
+  color: #2D3591!important;
+  border-width: 1px;
+  border-color: black;
+}
+
+[data-theme="sampaio"] .ui.basic.sampaio.button:hover, .ui.basic.sampaio.buttons:hover {
+  box-shadow: 0 0 0 1px #2D3591 inset!important;
+  color: #2D3591!important;
+  border-width: 1px;
+  border-color: black;
+}
+
+.ui.sampaio.label, .ui.sampaio.labels .label {
+  background-color: #2D3591!important;
+  border-color: #2D3591!important;
+  color: #000!important;
+}
+
+.ui.basic.sampaio.label {
+  background: none !important;
+  border-color: #2D3591!important;
+  color: #000!important;
+}
+
+.text.white {
+  color: #FFFFFF;
+}
+.text.grey {
+  color: #CCCCCC;
+}
+.text.black {
+  color: #1B1C1D;
+}
+.text.yellow {
+  color: #F2C61F;
+}
+.text.teal {
+  color: #00B5AD;
+}
+.text.red {
+  color: #D95C5C;
+}
+.text.purple {
+  color: #564F8A;
+}
+.text.pink {
+  color: #D9499A;
+}
+.text.orange {
+  color: #E07B53;
+}
+.text.green {
+  color: #5BBD72;
+}
+.text.blue {
+  color: #3B83C0;
+}
+.text.sampaio {
+  color: #000;
+}
+.ui.sampaio.header {
+  color: #000;
+}

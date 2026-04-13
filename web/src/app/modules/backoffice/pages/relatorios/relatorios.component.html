@@ -1,0 +1,60 @@
+<form [formGroup]="filterForm" class="ui form m-t-10">
+  <div class="fields">
+    <div class="field">
+      <label>Data início</label>
+      <input type="date" formControlName="dataInicio" />
+    </div>
+    <div class="field">
+      <label>Data fim</label>
+      <input type="date" formControlName="dataFim" />
+    </div>
+    <div class="field">
+      <label>Origem</label>
+      <input type="text" formControlName="origem" />
+    </div>
+    <div class="field">
+      <label>Destino</label>
+      <input type="text" formControlName="destino" />
+    </div>
+    <div class="field align-self-end">
+      <button type="button" class="ui green button" (click)="search()">Buscar</button>
+      <button type="button" class="ui button" (click)="clear()">Limpar</button>
+    </div>
+  </div>
+</form>
+
+<div ch-grid-column tablet="16" computer="16" class="m-t-30">
+  <grid-loading [grid]="grid"></grid-loading>
+
+  <table class="ui very basic sortable table ch-table striped" *ngIf="grid.itens.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Data Partida</th>
+        <th>Qtd. Vagas / Vendidas</th>
+        <th>Preço ($)</th>
+        <th>Receita</th>
+        <th>% Vendido</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of grid.itens">
+        <td>
+          <button class="ui button ghosted" (click)="openTravel(item.id)">
+            <i class="fal fa-icon fa-search"></i>
+          </button>
+        </td>
+        <td>{{ item.origem }}</td>
+        <td>{{ item.destino }}</td>
+        <td>{{ item.dataPartida?.replace('Z','') | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ item.qtdVagas }} / {{ item.vagasVendidas || 0 }}</td>
+        <td>{{ item.preco | currency:'BRL' }}</td>
+        <td>{{ receita(item) | currency:'BRL' }}</td>
+        <td>{{ ocupacao(item) | number:'1.0-2' }}%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div grid-pagination [grid]="grid" [current-page]="grid?.pageIndex" [total-pages]="grid?.totalPages"></div>

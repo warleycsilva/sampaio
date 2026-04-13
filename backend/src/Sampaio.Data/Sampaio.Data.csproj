@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <Configurations>Debug;Release;Staging</Configurations>
+    <RootNamespace>Sampaio.Data</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.23" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sampaio.Domain\Sampaio.Domain.csproj" />
+    <ProjectReference Include="..\Sampaio.Logging\Sampaio.Logging.csproj" />
+    <ProjectReference Include="..\Sampaio.Shared\Sampaio.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Repositories\PaymentCredentialsRepository.cs" />
+    <Compile Update="Migrations\20211013132058_CartItems.Designer.cs">
+      <DependentUpon>20211013132058_CartItems.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20210713180925_DebtPaymentsFields.Designer.cs">
+      <DependentUpon>20210713180925_DebtPaymentsFields.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20210705204003_PlansFields.Designer.cs">
+      <DependentUpon>20210705204003_PlansFields.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20221121221603_Initial.Designer.cs">
+      <DependentUpon>20221121221603_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20230402210118_Add_ViagemPagamento_PixQrCode.Designer.cs">
+      <DependentUpon>20230402210118_Add_ViagemPagamento_PixQrCode.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations" />
+  </ItemGroup>
+</Project>

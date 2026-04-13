@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <Configurations>Debug;Release;Staging</Configurations>
+    <RootNamespace>Sampaio.Infra</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.3.110.50" />
+    <PackageReference Include="Azure.Identity" Version="1.2.0-preview.6" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.5.0-preview.6" />
+    <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.6" />
+    <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="11.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sampaio.Domain\Sampaio.Domain.csproj" />
+    <ProjectReference Include="..\Sampaio.Logging\Sampaio.Logging.csproj" />
+    <ProjectReference Include="..\Sampaio.Shared\Sampaio.Shared.csproj" />
+  </ItemGroup>
+</Project>

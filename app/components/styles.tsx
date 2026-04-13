@@ -1,0 +1,121 @@
+import { StyleSheet } from 'react-native';
+import { Colors } from '../utils/consts';
+
+export default StyleSheet.create({
+  cardPesquisa: {
+    backgroundColor: Colors.fullWhite,
+    maxHeight: '100%',
+    width: '90%',
+    borderRadius: 10,
+    padding: 10,
+  },
+  textoTitulo: {
+    textAlign: 'center',
+    fontWeight: '400',
+    color: Colors.black,
+    fontSize: 18,
+    marginBottom: 12,
+  },
+  textInputLugar: {
+    backgroundColor: '#fff',
+    borderColor: Colors.primary,
+    borderWidth: 0.5,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    fontSize: 13,
+    maxHeight: 40,
+    width: '85%',
+    marginTop: 10,
+    color: Colors.primary,
+    textAlign: 'center',
+  },
+  inputContainer: {
+    paddingVertical: 5,
+    justifyContent: 'space-between',
+  },
+  inputLabel: {
+    color: Colors.primary,
+    fontSize: 12,
+    marginTop: 5,
+    fontWeight: '400',
+  },
+  modal: {
+    backgroundColor: Colors.fullWhite,
+    height: '100%',
+    width: '100%',
+    padding: 10,
+    justifyContent: 'center',
+  },
+  inputBorder: {
+    borderBottomWidth: 1,
+    borderColor: Colors.primary,
+    borderRadius: 10,
+  },
+  dateButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxWidth: '100%',
+    paddingHorizontal: '2%',
+  },
+  searchButton: {
+    backgroundColor: Colors.primary,
+    height: 45,
+    marginVertical: 5,
+    marginHorizontal: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  secondaryButton: {
+    backgroundColor: 'lightgray',
+    height: 45,
+    marginVertical: 5,
+    marginHorizontal: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  botaoNeutro: {
+    height: 45,
+    marginVertical: 20,
+    marginHorizontal: 40,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searchButtonText: {
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: '300',
+  },
+  secondaryButtonText: {
+    color: Colors.black,
+    fontSize: 18,
+    fontWeight: '300',
+  },
+  scrollFullHeight: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
+  },
+  scrollFullWidth: {
+    width: '95%',
+    minHeight: '95%',
+    paddingHorizontal: 5,
+  },
+  searchInput: {
+    backgroundColor: 'white',
+    height: 40,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: Colors.primary,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  searchInputRedesigned: {
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.primary
+  },
+});

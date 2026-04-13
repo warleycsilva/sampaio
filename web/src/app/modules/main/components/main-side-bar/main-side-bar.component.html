@@ -1,0 +1,45 @@
+<div class="ch-loader-progress"></div>
+
+<div
+    ch-side-bar
+    app-name="SampaioTur"
+    logo-url="assets/images/logo-brand.png">
+
+    <ch-side-bar-menu>
+
+<!--        <ch-side-bar-link-->
+<!--            [route]="['/renter']"-->
+<!--            icon="fas fa-users fa-icon"-->
+<!--            [description]="'Dono de veículo'">-->
+<!--        </ch-side-bar-link>-->
+<!--        <ch-side-bar-link-->
+<!--            [route]="['/lessee']"-->
+<!--            icon="fas fa-object-group fa-icon"-->
+<!--            [description]="'Motorista'">-->
+<!--        </ch-side-bar-link>-->
+<!--        <ch-side-bar-link-->
+<!--            [route]="['/backoffice']"-->
+<!--            icon="fas fa-tablet fa-icon"-->
+<!--            [description]="'Backoffice'">-->
+<!--        </ch-side-bar-link>-->
+
+    </ch-side-bar-menu>
+</div>
+<div class="ch-content">
+
+    <header ch-top-bar>
+        <ch-top-bar-menu>
+
+
+
+
+        </ch-top-bar-menu>
+
+    </header>
+
+    <div class="ui padded grid stackable">
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

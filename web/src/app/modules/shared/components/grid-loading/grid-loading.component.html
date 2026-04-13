@@ -1,0 +1,26 @@
+<div ch-grid-row>
+
+  <div ch-grid-column tablet="16" computer="16">
+
+    <div class="ui segment basic center aligned paddingless"
+      *ngIf="(!grid?.loading && !grid?.error && grid?.itens?.length == 0) || (!grid?.loading && grid?.error)">
+      <i class="fal fa-frown fa-9x" [ngStyle]="{'color': grid?.error ? '#db2828' : ''}"></i>
+      <h2 class="ui header" *ngIf="!grid?.loading && !grid?.error">
+        Não há nada para ser exibido
+      </h2>
+      <h2 class="ui header" [ngClass]="{'red text': grid?.error}" *ngIf="!grid?.loading && grid?.error">
+        Ocorreu um problema ao carregar os dados
+      </h2>
+
+
+    </div>
+
+    <div *ngIf="grid?.loading" class="m-t-30">
+      <div class="ui active inverted dimmer m-t-30">
+        <div class="ui text loader m-t-30"></div>
+      </div>
+      <p></p>
+    </div>
+
+  </div>
+</div>

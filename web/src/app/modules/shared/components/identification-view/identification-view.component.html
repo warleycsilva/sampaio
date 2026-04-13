@@ -1,0 +1,5 @@
+<span *ngIf="identification?.type">
+    <strong>{{('enums.identificationType.' + identification?.type | translate)}}</strong>
+</span>
+<span *ngIf="identification?.type && identification?.number">:&nbsp;</span>
+<span *ngIf="identification?.number">{{identification?.formatted}}</span>

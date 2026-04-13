@@ -1,0 +1,31 @@
+﻿@using Sampaio.Shared.Config
+@model Sampaio.Domain.EmailsViewModels.NewUserEmailVm
+@inject AppConfig AppConfig
+@{
+    Layout = "_Layout";
+    var url = $"{AppConfig.AppUrl}";
+    ViewBag.Title = "Register - Sampaio";
+}
+<div>
+    <p>
+        Hello @Model.Name
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+        Use the url and credentials below to access the authorizer:
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+        <ul style="list-style: none">
+            <li><strong>E-mail:</strong> @Model.Email</li>
+            @* <li><strong>Password:</strong> @Model.Password</li> *@
+        </ul>
+    </p>
+    <p>
+        We recommend that you change your password after first signing in to Authorizer.
+    </p>
+</div>

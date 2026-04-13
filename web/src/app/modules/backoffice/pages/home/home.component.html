@@ -1,0 +1,46 @@
+<div class="ch-login">
+  <div class="ch-login-container">
+
+    <div class="ch-login-header">
+      <img src="assets/images/logo-blue.png" class="logo">
+      <h1 class="ui header">
+        <span>{{ 'Bem-vindo' }}</span>
+      </h1>
+    </div>
+
+    <div class="ch-login-content">
+      <div class="ch-login-form">
+        <form class="ui form" [formGroup]="form">
+
+          <div class="field required" [ngClass]="{'error': form.controls.username.invalid && submited}">
+            <input type="text" required formControlName="username"
+                   [placeholder]="('Usuário')">
+            <ch-pointing-label *ngIf="submited && form.controls.username?.errors?.required">
+              Usuário é obrigatório
+            </ch-pointing-label>
+          </div>
+
+          <div class="field required"
+               [ngClass]="{'error': form.controls.password.invalid && submited}">
+            <input type="password" required formControlName="password"
+                   [placeholder]="('Senha' )">
+            <ch-pointing-label *ngIf="submited && form.controls.password?.errors?.required">
+              Senha é obrigatória
+            </ch-pointing-label>
+          </div>
+          <div class="ui divider hidden"></div>
+          <button class="ui sampaio fluid button" (click)="send()">
+            {{'Login'}}
+            <i class="fal fa-icon fa-sign-in"></i>
+          </button>
+
+          <div class="ui divider hidden"></div>
+
+        </form>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

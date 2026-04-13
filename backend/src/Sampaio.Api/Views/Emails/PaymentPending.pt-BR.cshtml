@@ -1,0 +1,20 @@
+@using System.Globalization
+@using Sampaio.Shared.Config
+@model Sampaio.Domain.EmailsViewModels.PendingPaymentVm
+@inject AppConfig AppConfig
+@{
+    Layout = "_Layout";
+    var url = $"{AppConfig.AppUrl}";
+    ViewBag.Title = "Pagamento pendente";
+}
+
+<div>
+    <p>Olá, @Model.EstablishmentName</p>
+    <p>
+        Há um pagamento no valor de R$ @Model.PaymentValue realizado no dia @Convert.ToDateTime(@Model.PaymentDatetime).ToString("d", new CultureInfo("pt-BR")) pelo locatário (@Model.ClientName) através de transferência bancária aguardando a sua aprovação.
+    </p>
+</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+              
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->

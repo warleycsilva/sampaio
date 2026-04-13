@@ -1,0 +1,21 @@
+<ch-modal #modalBlockUser>
+    <div ch-grid-row>
+      <div ch-grid-column tablet="16" computer="16">
+        <form class="ui form" [formGroup]="formBlock">
+          <div class="field required" [ngClass]="{
+              error: formBlock.controls.blockReason?.invalid && submittedBlock
+            }">
+            <input type="text" required formControlName="blockReason" [placeholder]="'Motivo'" />
+            <ch-pointing-label *ngIf="
+                submittedBlock && formBlock.controls.blockReason?.errors?.required
+              ">
+              O Motivo é obrigatório
+            </ch-pointing-label>
+          </div>
+          <button class="ui sampaio button" (click)="blockPartnerUser()">
+            Enviar <i class="fal fa-icon" [ngClass]="'fa-save'"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </ch-modal>

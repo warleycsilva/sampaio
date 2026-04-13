@@ -1,0 +1,25 @@
+<div class="ui segment basic paddingless right aligned h-text-center--mobile" *ngIf="grid?.totalPages > 1">
+  <div class="ui pagination menu ch-pagination">
+    <a class="item" [ngClass]="{'disabled': !grid?.hasPreviousPage()}" (click)="grid?.goToFirstPage()">
+      <i class="fal fa-angle-double-left fa-2x"></i>
+    </a>
+    <a class="item" [ngClass]="{'disabled': !grid?.hasPreviousPage()}" (click)="grid?.goToPreviousPage()">
+      <i class="fal fa-angle-left fa-2x"></i>
+    </a>
+
+    <ng-container *ngFor="let index of pages">
+      <a class="item" (click)="goToPage(index)" [ngClass]="{'active': index === grid?.pageIndex}">{{index}}</a>
+    </ng-container>
+
+
+    <!-- <div class="disabled item">Página {{grid?.pageIndex}} de {{grid?.totalPages}}</div> -->
+
+    <a class="item" [ngClass]="{'disabled': !grid?.hasNextPage()}" (click)="grid?.goToNextPage()">
+      <i class="fal fa-angle-right fa-2x"></i>
+    </a>
+    <a class="item" [ngClass]="{'disabled': !grid?.hasNextPage()}" (click)="grid?.goToLastPage()">
+      <i class="fal fa-angle-double-right fa-2x"></i>
+    </a>
+  </div>
+</div>
+

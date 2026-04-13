@@ -1,0 +1,24 @@
+﻿@using Sampaio.Shared.Config
+@using Sampaio.Shared.Extensions
+@model Sampaio.Domain.EmailsViewModels.ScheduleAlertVm
+@inject AppConfig AppConfig
+@{
+    Layout = "_Layout";
+    ViewBag.Title = Model.Subject;
+}
+<div>
+    <p>
+        Olá, @Model.Name
+    </p>
+    <p>
+        Este e-mail é um lembrete da @Model.Type.Description() do dia @Model.Date.ToBrazilianTimezone().ToString("dd/MM/yyyy") às @Model.Time
+    </p>
+    <p>@Model.Description</p>
+                      
+    @if (@Model.Obs != "")
+    {
+        <h3>Observações:</h3>
+        <p>@Model.Obs</p>
+    }
+
+</div>

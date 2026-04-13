@@ -1,0 +1,136 @@
+<div class="ch-login">
+  <div class="ch-login-container">
+
+    <div class="ch-login-header">
+      <img src="assets/images/logo-blue.png" [ngClass]="{'logo':!signUp,'miniLogo':signUp}">
+      <h1 class="ui header">
+        <span>{{ (signUp ? 'Cadastro' : (!forgotPass ? 'Backoffice - Sampaio Tur' : 'Esqueci a senha')) }}</span>
+      </h1>
+    </div>
+
+    <div class="ch-login-content">
+      <div class="ch-login-form">
+        <form class="ui form" [formGroup]="form">
+
+          <div class="field required" [ngClass]="{'error': form.controls.email.invalid && submited}">
+            <input type="text" required formControlName="email"
+                   [placeholder]="('E-mail')">
+            <ch-pointing-label *ngIf="submited && form.controls.email?.errors?.required">
+              E-mail é obrigatório
+            </ch-pointing-label>
+            <ch-pointing-label class="error" *ngIf="submited && form.controls.email?.errors?.email">
+              E-mail é invalido
+            </ch-pointing-label>
+          </div>
+
+          <div *ngIf="!forgotPass" class="field required"
+               [ngClass]="{'error': form.controls.password.invalid && submited}">
+            <input *ngIf="!forgotPass" type="password" required formControlName="password"
+                   [placeholder]="('Senha' )">
+            <ch-pointing-label *ngIf="submited && form.controls.password?.errors?.required">
+              Senha é obrigatória
+            </ch-pointing-label>
+          </div>
+
+          <div *ngIf="signUp" class="field required"
+               [ngClass]="{'error': form.controls.passwordConfirmation.invalid && submited}">
+            <input *ngIf="signUp" type="password" required formControlName="passwordConfirmation"
+                   [placeholder]="('Confirmar Senha' )">
+            <ch-pointing-label *ngIf="submited && form.controls.passwordConfirmation?.errors?.required">
+              Confirmação de senha é obrigatório
+            </ch-pointing-label>
+          </div>
+
+          <div *ngIf="signUp" class="field required" [ngClass]="{'error': form.controls.firstName.invalid && submited}">
+            <input *ngIf="signUp" type="text" required formControlName="firstName"
+                   [placeholder]="('Nome' )">
+            <ch-pointing-label *ngIf="submited && form.controls.firstName?.errors?.required">
+              Nome é obrigatório
+            </ch-pointing-label>
+          </div>
+
+          <div *ngIf="signUp" class="field required">
+            <input *ngIf="signUp" type="text" required formControlName="lastName"
+                   [placeholder]="('Sobrenome' )">
+          </div>
+
+          <div *ngIf="signUp" class="field required" [ngClass]="{'error': form.controls.type.invalid && submited}">
+            <select ch-dropdown-select required formControlName="type">
+              <option *ngFor="let item of userTypes" [value]="item.value">
+                {{ item.name }}
+              </option>
+            </select>
+            <ch-pointing-label *ngIf="submited && form.controls.type?.errors?.required">
+              Informar se é dono de veículo ou motorista é obrigatório
+            </ch-pointing-label>
+          </div>
+
+          <div class="ui divider hidden"></div>
+          <button class="ui sampaio fluid button" (click)="send()">
+            {{forgotPass || signUp ? 'Enviar' : 'Login'}}
+            <i class="fal fa-icon"
+               [ngClass]="{'fa-sign-in': !forgotPass && !signUp, 'fa-save':signUp , 'fa-paper-plane': forgotPass} "></i>
+          </button>
+
+          <div *ngIf="!signUp" class="ui divider hidden"></div>
+
+          <div *ngIf="!signUp" class="divider hidden ui">
+<!--          <button class="ui sampaio basic fluid button" *ngIf="!forgotPass && !signUp" (click)="handleSignUp()">-->
+<!--            Cadastre-se-->
+<!--          </button>-->
+          </div>
+        </form>
+
+        <div class="ch-login-helpers">
+          <span *ngIf="signUp">
+            <a (click)="handleSignUp()">
+              Voltar para Login
+            </a>
+          </span>
+<!--          <span *ngIf="!signUp">-->
+<!--            <a (click)="handleFunction()">-->
+<!--              {{ (!forgotPass ? 'Esqueceu a senha ?' : 'Voltar para login') }}-->
+<!--            </a>-->
+<!--          </span>-->
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<ch-modal #selectUserTypeModal>
+    <div ch-grid-row >
+      <div
+        ch-grid-column
+        tablet="16"
+        computer="16">
+        <img src="assets/images/logo-blue.png" class="miniLogo center aligned">
+        <h3 style="padding-bottom: 0px;text-align: center">Olá! Seja bem-vindo(a) ao SampaioTur</h3>
+        <p></p>
+          <div class="ui segment">
+            <div class="ui two column very relaxed stackable grid">
+              <div class="column">
+                <div class="ui form">
+                  <div class="field">
+                    <a (click)="closeModal(false)">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="middle aligned column">
+                <div class="field">
+                  <a (click)="closeModal(true)">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="ui vertical divider">
+              OU
+            </div>
+          </div>
+      </div>
+    </div>
+</ch-modal>
+

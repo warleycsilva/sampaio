@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Sampaio.Shared\Sampaio.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Services\GenerateBankingBillet.cs" />
+      <Compile Remove="Class1.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Config\homolog.p12" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Config" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ReferencePathWithRefAssemblies Update="C:\Users\Warley\.nuget\packages\gerencianet.netcore.sdk\2.0.2\lib\netcoreapp2.1\Gerencianet.NETCore.SDK.dll" />
+    </ItemGroup>
+
+</Project>

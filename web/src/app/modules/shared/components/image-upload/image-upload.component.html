@@ -1,0 +1,33 @@
+<ng-container
+    *ngIf="form"
+    [formGroup]="form">
+    <label *ngIf="label">{{label}}</label>
+
+    <div
+        class="ui action input m-b-20">
+        <input
+            type="text"
+            formControlName="name"
+            readonly>
+        <div
+            class="ui icon button"
+            (click)="selectFile()">
+            <i class="attach icon"></i>
+        </div>
+    </div>
+
+    <div class="content-f-u" *ngIf="isImg">
+        <img
+            *ngIf="imageUrl != null && imageUrl != ''"
+            class="ui medium image"
+            [src]="imageUrl | safeUrl"
+            alt="img"
+            #img
+            (click)="selectFile()">
+    </div>
+</ng-container>
+<input
+    type="file"
+    #file
+    style="visibility: hidden"
+    (change)="onFileChange($event)">

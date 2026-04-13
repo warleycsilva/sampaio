@@ -1,0 +1,16 @@
+.title-side-bar-custom {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+
+  border: 1px solid red;
+  padding: 0 0 0 17px;
+}
+
+.title-side-bar-custom h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 22px;
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}

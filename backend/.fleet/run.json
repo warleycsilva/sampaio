@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "dotnet",
+            "name": "Dotnet configuration",
+            "projectPath": "src/Sampaio.Api/Sampaio.Api.csproj",
+            "exePath": "",
+            "args": [],
+        },
+
+    ]
+}

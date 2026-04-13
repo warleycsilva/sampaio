@@ -1,0 +1,37 @@
+﻿@using Sampaio.Shared.Extensions
+@model Sampaio.Domain.EmailsViewModels.ConfirmacaoCompraEmailVm
+@{
+    Layout = "_Layout";
+    ViewBag.Title = Model.Assunto;
+}
+<div>
+    <p>
+        Olá, @Model.Nome
+    </p>
+    <p>
+        Este e-mail é uma confirmação da sua compra de @Model.Passageiros.Count.ToString() @(Model.Passageiros.Count == 1 ? "passagem" :  "passagens") com destino à @Model.Destino.
+    </p>
+    <p>
+        Sua partida de @Model.Origem será às @Model.DataPartida.ToBrazilianTimezone().ToString("dd/MM/yyyy") às @Model.DataPartida.ToBrazilianTimezone().ToString("HH:mm").
+    </p>
+    <h4>
+        Passageiro(s) informados:
+    </h4>
+    <ul>
+    @{
+        foreach(var passageiro in Model.Passageiros)
+        {
+                <li>Assento @passageiro.Assento.ToString("00"): @passageiro.Nome</li>
+        }
+    }
+    </ul>
+    <p>Valor total pago: R$ @Model.ValorTotal.ToString("N2")</p>
+    <p>Forma de pagamento utilizada: @Model.FormaPagamento</p>
+    
+    <hr>
+    <br>
+    <p>Observações:</p>
+    <p>Todos passageiros deverão apresentar o documento no embarque.</p>
+    <br>
+    <p>@Model.Observacoes</p>
+</div>

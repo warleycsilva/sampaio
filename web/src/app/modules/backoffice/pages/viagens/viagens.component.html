@@ -1,0 +1,134 @@
+<div ch-grid-column>
+  <button
+    type="button"
+    class="ui payrentee button"
+    (click)="novaViagem()"
+  >
+    Nova viagem
+    <i class="fal fa-plus"></i>
+  </button>
+  <form [formGroup]="filterForm" class="ui form m-t-10">
+    <div class="fields">
+      <div class="field">
+        <label>Origem</label>
+        <input type="text" formControlName="origem" />
+      </div>
+      <div class="field">
+        <label>Destino</label>
+        <input type="text" formControlName="destino" />
+      </div>
+      <div class="field">
+        <label>Data Partida</label>
+        <input type="date" formControlName="dataPartida" />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="text" formControlName="email" />
+      </div>
+      <div class="field">
+        <label>CPF</label>
+        <input type="text" formControlName="cpf" />
+      </div>
+      <div class="field">
+        <label>Status</label>
+        <select formControlName="isActive" class="ui dropdown">
+          <option value="">Todos</option>
+          <option [ngValue]="true">Ativo</option>
+          <option [ngValue]="false">Oculto</option>
+        </select>
+      </div>
+      <div class="field align-self-end">
+        <button type="button" class="ui green button" (click)="search()">Buscar</button>
+        <button type="button" class="ui button" (click)="clear()">Limpar</button>
+      </div>
+    </div>
+  </form>
+  </div>
+
+<div
+  grid-pagination
+  [grid]="grid"
+  [current-page]="grid?.pageIndex"
+  [total-pages]="grid?.totalPages"
+></div>
+<div ch-grid-column>
+  <div ch-grid-column tablet="16" computer="16" class="m-t-30">
+    <grid-loading [grid]="grid"></grid-loading>
+
+    <table
+      class="ui very basic sortable table ch-table striped"
+      *ngIf="grid.itens.length > 0"
+    >
+      <thead>
+      <tr>
+        <th class="center aligned checkbox no-sort"></th>
+        <th th-sort>Origem</th>
+        <th th-sort>Destino</th>
+        <th th-sort>Data Partida</th>
+        <th th-sort>Preço</th>
+        <th th-sort>Qtd. Vagas</th>
+        <th th-sort>Vagas vendidas</th>
+        <th th-sort>Criado em</th>
+        <th th-sort>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of grid.itens; let i = index">
+        <td class="checkbox">
+          <div ch-dp-btn color="tiny" header="Opções">
+            <div class="item" [routerLink]="[item.id, 'detalhes']">
+                <span class="ui small sampaio header small">
+                  <i class="fa fa-search"></i>
+                </span>
+              Detalhes
+            </div>
+            <div class="item" (click)="toggleActivation(item.id)">
+                <span class="ui small sampaio header small">
+                  <i class="fa" [ngClass]="item?.isActive ? 'fa-power-off red' : 'fa-power-off green'"></i>
+                </span>
+              {{item.isActive ? "Desativar" : "Ativar"}}
+            </div>
+            <div class="item" [routerLink]="[item.id, 'editar']">
+                <span class="ui small sampaio header small">
+                  <i class="fa fa-pencil"></i>
+                </span>
+              Editar
+            </div>
+          </div>
+        </td>
+        <td>
+          {{ item.origem }}
+        </td>
+        <td>
+          {{ item.destino }}
+        </td>
+        <td>
+          {{ item.dataPartida?.replace("Z","") | date: "dd/MM/yyyy HH:mm" }}
+        </td>
+        <td>
+          {{ item.preco | currency: "BRL" }}
+        </td>
+        <td>
+          {{ item.qtdVagas }}
+        </td>
+        <td>
+          {{ item?.vagasVendidas ?? 0 }}
+        </td>
+        <td>
+          {{ item.createdAt | date: "shortDate" }}
+        </td>
+        <td>
+          <span [ngClass]="item.isActive ? 'ui label green' : 'ui label grey'">
+          {{ item.isActive ? "Ativo" : "Oculto"}}</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div
+  grid-pagination
+  [grid]="grid"
+  [current-page]="grid?.pageIndex"
+  [total-pages]="grid?.totalPages"
+></div>

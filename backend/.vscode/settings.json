@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/683886c2-5b99-4d18-a713-e113198a8e48/resourceGroups/DriversClub/providers/Microsoft.Web/sites/driversclub-api",
+    "appService.deploySubpath": "."
+}

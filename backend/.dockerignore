@@ -1,0 +1,16 @@
+**/*.blob
+**/package-lock.json
+**/shell/deploy-aws/
+**/deploy-aws/
+**/shell/deploy-aws/
+**/dist/
+**/x64/
+**/x86/
+**/.vscode/
+**/.rider/
+**/build/
+**/bld/
+**/bin/
+**/obj/
+**/node_modules/
+**/.git/

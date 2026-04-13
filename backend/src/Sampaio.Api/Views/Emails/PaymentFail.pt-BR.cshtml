@@ -1,0 +1,27 @@
+@using System.Globalization
+@using Sampaio.Shared.Config
+@model Sampaio.Domain.EmailsViewModels.PaymentFailedVm
+@inject AppConfig AppConfig
+@{
+    Layout = "_Layout";
+    var url = $"{AppConfig.AppUrl}";
+    ViewBag.Title = "Falha no pagamento";
+}
+
+<div>
+    <p>
+        Olá, @Model.ClientName
+    </p>
+    <p>
+        Seu pagamento de R$ @Model.PaymentValue feito através de @Model.PaymentType no dia @Convert.ToDateTime(@Model.PaymentDatetime).ToString("d", new CultureInfo("pt-BR")) foi recusado pelo locador (@Model.EstablishmentName).
+
+    </p>
+    <p>
+        Acesse o aplicativo da Sampaio para realizar o pagamento novamente.
+    </p>
+</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+              
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+    

@@ -1,0 +1,157 @@
+<div ch-grid-row>
+  <div [centered]="true" ch-grid-column computer="14" tablet="20">
+    <form [formGroup]="form" class="ui form">
+      <h4>Informações gerais</h4>
+      <div class="ui two fields">
+        <div class="ui field required">
+          <label> Origem </label>
+          <input [placeholder]="('Origem')" formControlName="origem" required
+                 type="text">
+          <ch-pointing-label *ngIf="form.controls.origem?.errors?.required">
+            Campo obrigatório
+          </ch-pointing-label>
+        </div>
+
+        <div class="ui field required">
+          <label> Destino </label>
+          <input [placeholder]="('Destino')" formControlName="destino" required
+                 type="text">
+          <ch-pointing-label *ngIf="form.controls.destino?.errors?.required">
+            Campo obrigatório
+          </ch-pointing-label>
+        </div>
+      </div>
+      <div class="ui two fields">
+        <div class="ui field required">
+          <label> Data de partida </label>
+          <input [placeholder]="('Data de partida')" formControlName="dataPartida" required
+                 type="datetime-local">
+          <ch-pointing-label *ngIf="form.controls.dataPartida?.errors?.required">
+            Campo obrigatório
+          </ch-pointing-label>
+        </div>
+
+        <div class="ui field required">
+          <label> Preço da Passagem </label>
+          <input [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" [placeholder]="('Preço')" currencyMask
+                 formControlName="preco"
+                 required
+                 [readOnly]="readonly"
+                 type="text">
+          <ch-pointing-label *ngIf="form.controls.preco?.errors?.required">
+            Campo obrigatório
+          </ch-pointing-label>
+        </div>
+
+      </div>
+      <div class="ui field required">
+        <label> Quantidade de vagas </label>
+        <input [placeholder]="('Quantidade de vagas')" formControlName="qtdVagas" required
+               type="number">
+        <ch-pointing-label *ngIf="form.controls.qtdVagas?.errors?.required">
+          Campo obrigatório
+        </ch-pointing-label>
+      </div>
+      <div class="ui field required">
+        <label> Observações </label>
+        <textarea [placeholder]="('Observações')" formControlName="observacoes"
+                  type="text" ></textarea>
+        <ch-pointing-label *ngIf="form.controls.observacoes?.errors?.required">
+          Campo obrigatório
+        </ch-pointing-label>
+      </div>
+<!--      <div class="ui field">-->
+<!--        <label> Vagas Ocupadas </label>-->
+<!--        <input [placeholder]="('Vagas disponíveis')" formControlName="assentosOcupados"-->
+<!--               type="text">-->
+<!--        <ch-pointing-label *ngIf="form.controls.assentosOcupados?.errors">-->
+<!--        </ch-pointing-label>-->
+<!--      </div>-->
+      <div *ngIf="readonly">
+        <h2>Passageiros</h2>
+        <div *ngIf="!(this.passageiros.length)">
+          <span style="color: gray;">Nenhum passageiro comprou passagens dessa viagem ainda.</span>
+          <p></p>
+          <span style="color: gray; font-size: 10px">{{ now | date: 'short'}}</span>
+        </div>
+
+        <div ch-grid-column>
+          <div ch-grid-column class="m-t-30" computer="16" tablet="16">
+            <table
+              *ngIf="this.passageiros.length > 0"
+              class="ui very basic sortable table ch-table"
+            >
+              <thead>
+              <tr>
+                <th th-sort>Nome</th>
+                <th th-sort>Telefone</th>
+                <th th-sort>Documento</th>
+                <th th-sort>Assento</th>
+                <th th-sort>E-mail do Comprador</th>
+                <th th-sort>CPF do Comprador</th>
+                <th th-sort>Comprador</th>
+                <th th-sort>Valor Pago</th>
+                <th th-sort>Data da compra</th>
+                <th th-sort>Status</th>
+                <th >#</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of this.passageiros; let i = index">
+                <td>
+                  {{ item.nome }}
+                </td>
+                <td>
+                  {{ item.telefone | mask: '(00) 00000-0000 | (00) 0000-0000' }}
+                </td>
+                <td>
+                  {{ item.documento | mask: '000.000.000-00 | 00.000.00000'}}
+                </td>
+                <td>
+                  {{ item.assento | mask: '00'}}
+                </td>
+                <td>
+                  {{ item.emailComprador }}
+                </td>
+                <td>
+                  {{ item.cpfComprador | mask: '000.000.000-00'}}
+                </td>
+                <td>
+                  <span class="ui label" [ngClass]="!item.comprador ? 'gray' : 'green'">{{ item.comprador ? "Sim" : "Não"}}</span>
+                </td>
+                <td>
+                  {{ item.valorPago | currency: "BRL"}}
+                </td>
+                <td>
+                  {{ item.dataDaCompra | date: 'short'}}
+                </td>
+                <td>
+                  <span class="ui label" [ngClass]="item.statusPagamentoDescricao == 'Estornado' ? 'orange' : 'green'">{{ item.statusPagamentoDescricao}}</span>
+                </td>
+                <td>
+                  <button *ngIf="item.comprador" class="ui button"  [ngClass]="item.statusPagamentoDescricao == 'Estornado' ? 'gray' : 'inverted red'" (click)="estorno(item.id, item.statusPagamentoDescricao == 'Estornado' )">Estornar</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div *ngIf="!!passageiros.length">
+              <hr>
+              <div style="width: 100%; margin-top: 15px;">
+                <h3 style="width: 100%; text-align: end">Total Faturado <b>{{this.valorTotalFaturado | currency: "BRL"}}</b></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="ui four fields">
+        <div *ngIf="!readonly" class="ui field">
+          <button (click)="save()" class="ui sampaio fluid button">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

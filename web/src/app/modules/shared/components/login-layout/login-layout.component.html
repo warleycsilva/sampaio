@@ -1,0 +1,13 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image" *ngIf="showLogo">
+      <img src="../../../../../assets/images/logo-blue.png" class="image">
+    </h2>
+    <h3 class="ui descarpack header" *ngIf="showTitle">
+      <div class="content">
+        {{title}}
+      </div>
+    </h3>
+    <ng-content></ng-content>
+  </div>
+</div>

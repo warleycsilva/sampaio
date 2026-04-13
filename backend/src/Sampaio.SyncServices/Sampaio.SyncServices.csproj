@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Configurations>Debug;Release;Staging</Configurations>
+    <RootNamespace>Sampaio.SyncServices</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sampaio.Domain\Sampaio.Domain.csproj" />
+    <ProjectReference Include="..\Sampaio.Shared\Sampaio.Shared.csproj" />
+  </ItemGroup>
+</Project>

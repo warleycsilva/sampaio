@@ -1,0 +1,38 @@
+.text {
+  cursor: pointer;
+}
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.miniLogo {
+  display: block;
+  margin: auto;
+  width: 20%;
+}
+
+.ui.form .field {
+  margin: 0 0 0.65em
+}
+/*.ch-login-container{*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: center;*/
+/*  padding: 0 60px;*/
+/*  width: 30%;*/
+/*  background-color: #fff;*/
+/*  z-index: 1;*/
+/*}*/
+.ch-login{
+  display: flex;
+  flex-direction: row-reverse;
+}
+.ch-login:after {
+  background-color: #2D3591;
+  opacity: .45;
+  z-index: 0
+}

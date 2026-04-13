@@ -1,0 +1,132 @@
+<ng-container
+    [formGroup]="form"
+    *ngIf="form">
+    <h4 class="ui dividing header">
+        {{'components.addressInformation.title' | translate}}
+    </h4>
+
+    <div class="fields">
+        <div
+            class="eight wide field"
+            [ngClass]="{'required': required, 'error': form.controls.address?.invalid && submitted}">
+            <label>
+                {{'components.addressInformation.address' | translate}}
+            </label>
+            <input
+                type="text"
+                [required]="required"
+                maxlength="255"
+                formControlName="address">
+            <ch-pointing-label *ngIf="required && submitted && form.controls.address?.errors?.required">
+                {{'components.addressInformation.validations.address.required' | translate}}
+            </ch-pointing-label>
+        </div>
+        <div
+            class="three wide field"
+            [ngClass]="{'required': required, 'error': form.controls.number?.invalid && submitted}">
+            <label>
+                {{'components.addressInformation.number' | translate}}
+            </label>
+            <input
+                type="text"
+                maxlength="100"
+                formControlName="number">
+            <ch-pointing-label *ngIf="required && submitted && form.controls.number?.errors?.required">
+                {{'components.addressInformation.validations.number.required' | translate}}
+            </ch-pointing-label>
+        </div>
+        <div
+            class="five wide field"
+            [ngClass]="{'required': required, 'error': form.controls.district?.invalid && submitted}">
+            <label>
+                {{'components.addressInformation.district' | translate}}
+            </label>
+            <input
+                type="text"
+                [required]="required"
+                maxlength="100"
+                formControlName="district">
+            <ch-pointing-label *ngIf="required && submitted && form.controls.district?.errors?.required">
+                {{'components.addressInformation.validations.district.required' | translate}}
+            </ch-pointing-label>
+        </div>
+    </div>
+
+    <div class="fields">
+        <div
+            class="four wide field"
+            [ngClass]="{'required': required, 'error': form.controls.zipCode?.invalid && submitted}">
+            <label>
+                {{'components.addressInformation.zipCode' | translate}}
+            </label>
+
+            <input
+                type="text"
+                [required]="required"
+                mask="00000-000"
+                [dropSpecialCharacters]="true"
+                formControlName="zipCode">
+            <ch-pointing-label *ngIf="required && submitted && form.controls.zipCode?.errors?.required">
+                {{'components.addressInformation.validations.zipCode.required' | translate}}
+            </ch-pointing-label>
+        </div>
+        <div class="twelve wide field">
+            <label>
+                {{'components.addressInformation.complement' | translate}}
+            </label>
+            <input
+                type="text"
+                maxlength="100"
+                formControlName="complement">
+
+        </div>
+    </div>
+
+    <div class="fields">
+        <div
+            class="eight wide field"
+            [ngClass]="{'required': required, 'error': form.controls.city?.invalid && submitted}">
+            <label>
+                {{'components.addressInformation.city' | translate}}
+            </label>
+            <input
+                [required]="required"
+                type="text"
+                maxlength="100"
+                formControlName="city">
+            <ch-pointing-label *ngIf="required && submitted && form.controls.city?.errors?.required">
+                {{'components.addressInformation.validations.city.required' | translate}}
+            </ch-pointing-label>
+        </div>
+        <div
+            class="eight wide field"
+            [ngClass]="{'required': required, 'error': form.controls.state?.invalid && submitted}">
+            <label>
+                {{'components.addressInformation.state' | translate}}
+            </label>
+            <input
+                [required]="required"
+                *ngIf="!useBrStates; else brStatesTemp"
+                type="text"
+                maxlength="100"
+                formControlName="state">
+            <ng-template #brStatesTemp>
+                <select
+                    [required]="required"
+                    *ngIf="loaded"
+                    ch-dropdown-select
+                    formControlName="state">
+                    <option
+                        *ngFor="let item of brStates"
+                        [value]="item.initials">
+                        {{item.name}}
+                    </option>
+                </select>
+            </ng-template>
+            <ch-pointing-label *ngIf="required && submitted && form.controls.state?.errors?.required">
+                {{'components.addressInformation.validations.state.required' | translate}}
+            </ch-pointing-label>
+        </div>
+    </div>
+
+</ng-container>
