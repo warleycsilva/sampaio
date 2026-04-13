@@ -67,6 +67,14 @@
             "deploymentTarget": "15.1"
           }
         }
+      ],
+      "@react-native-community/datetimepicker",
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "",
+          "enableGooglePay": false
+        }
       ]
     ]
   }
