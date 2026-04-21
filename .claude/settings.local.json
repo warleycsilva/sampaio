@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find C:sampaiobackend -name *SecurityPolices* -o -name *SecurityPolicies*)",
+      "Bash(find C:sampaiobackendsrcSampaio.ApiControllers -name *.cs -type f)",
+      "Bash(cat)",
+      "Read(//tmp/**)",
+      "Bash(yarn remove *)",
+      "Bash(yarn add *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('peerDependencies',{}\\), indent=2\\)\\); print\\('---'\\); print\\(json.dumps\\(d.get\\('dependencies',{}\\), indent=2\\)\\)\")",
+      "Bash(npm info *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('version'\\)\\); deps=d.get\\('dependencies',{}\\); [print\\(k,v\\) for k,v in deps.items\\(\\) if 'worklet' in k.lower\\(\\) or 'reanimat' in k.lower\\(\\)]\")",
+      "Bash(python -c \"import sys; lines=[l for l in sys.stdin if 'worklet' in l.lower\\(\\) or 'reanimat' in l.lower\\(\\)]; print\\('\\\\n'.join\\(lines\\)\\)\")",
+      "Bash(npx expo *)",
+      "Bash(npx create-expo-app@latest app-v2 --template blank-typescript --no-install)",
+      "Bash(yarn install *)",
+      "Bash(npx tsc *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}
