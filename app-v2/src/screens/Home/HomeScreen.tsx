@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInputMask } from 'react-native-masked-text';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -22,7 +23,7 @@ const HomeScreen: React.FC = () => {
   function handleSelect(item: Viagem) {
     setPassengers([]);
     // @ts-ignore
-    navigation.navigate('HomeBase', { screen: 'Confirmacao', params: { item } });
+    navigation.navigate('Confirmacao', { item });
   }
 
   return (

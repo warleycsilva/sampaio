@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Modalize } from 'react-native-modalize';
-import Clipboard from '@react-native-clipboard/clipboard';
+import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 import { MaskService } from 'react-native-masked-text';
 import { useNavigation } from '@react-navigation/native';
@@ -96,7 +96,7 @@ const PaymentSection: React.FC<Props> = ({ id, pricePerSeat, onQrCode, onPaid, o
       <Text style={[styles.resultTitle, { color: Colors.primary }]}>Pague via PIX</Text>
       <Text style={styles.resultSub}>Copie o código abaixo e use no app do seu banco:</Text>
       <View style={styles.pixBox}><Text style={styles.pixCode} selectable>{qrCode}</Text></View>
-      <AppButton text="Copiar código PIX" onPress={() => Clipboard.setString(qrCode)} />
+      <AppButton text="Copiar código PIX" onPress={() => Clipboard.setStringAsync(qrCode)} />
       <Text style={styles.resultSub}>Comprovante enviado para: {buyer.email}</Text>
       <AppButton text="Verificar pagamento" onPress={checkStatus} variant="secondary" />
       <AppButton text="Voltar" onPress={() => { navigation.goBack(); onQrCode(null); setQrCode(null); }} variant="secondary" />
